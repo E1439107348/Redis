@@ -12,14 +12,28 @@ namespace UI.Controllers
 {
     public class HomeController : Controller
     {
+
         // GET: Home
         public ActionResult Index()
         {
+            Lognet();
             Ts();
             return View();
         }
 
 
+        private void Lognet()
+        {
+
+          
+            SysLogMsg logMessage = new SysLogMsg();
+            logMessage.UserName = "小王";
+            logMessage.OperationTime = DateTime.Now;
+            logMessage.Content = "测试小酱油";
+            logMessage.Url = "192.168";
+            string Retunr = LogHelper.logMessage(logMessage);
+            LogHelper.Info(Retunr);
+        }
         private void Ts()
         {
             RedisHelperCs redis = new RedisHelperCs(1);

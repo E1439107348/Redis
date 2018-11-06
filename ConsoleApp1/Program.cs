@@ -6,12 +6,33 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using log4net.Config;
+using log4net;
 namespace ConsoleApp1
 {
     internal class Program
     {
         private static void Main(string[] args)
+        {
+
+            
+
+
+
+            Console.WriteLine("");
+            Console.Read();
+        }
+
+
+        //log4net测试
+
+        public void lognet()
+        {
+
+        }
+
+        //Redis测试
+        public void RedisTs()
         {
             RedisHelperCs redis = new RedisHelperCs(1);
 
@@ -112,13 +133,8 @@ namespace ConsoleApp1
 
             #endregion Lock
 
-
-
-
-
-            Console.WriteLine("");
-            Console.Read();
         }
+
     }
 
     public class Demo

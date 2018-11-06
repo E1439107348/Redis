@@ -11,6 +11,8 @@ namespace UI
     {
         protected void Application_Start()
         {
+            //配置log4
+            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(Server.MapPath("~/Web.config")));
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

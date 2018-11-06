@@ -67,7 +67,7 @@ namespace RedisHelper
             connectionString = connectionString ?? RedisConnectionString;
             var connect = ConnectionMultiplexer.Connect(connectionString);
 
-            //注册如下事件
+            //注册如下事件  写入日志
             connect.ConnectionFailed += MuxerConnectionFailed;
             connect.ConnectionRestored += MuxerConnectionRestored;
             connect.ErrorMessage += MuxerErrorMessage;
@@ -87,7 +87,8 @@ namespace RedisHelper
         /// <param name="e"></param>
         private static void MuxerConfigurationChanged(object sender, EndPointEventArgs e)
         {
-            Console.WriteLine("Configuration changed: " + e.EndPoint);
+            LogHelper.error("Configuration changed: " + e.EndPoint);
+           
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace RedisHelper
         /// <param name="e"></param>
         private static void MuxerErrorMessage(object sender, RedisErrorEventArgs e)
         {
-            Console.WriteLine("ErrorMessage: " + e.Message);
+            LogHelper.error("ErrorMessage: " + e.Message);
         }
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace RedisHelper
         /// <param name="e"></param>
         private static void MuxerConnectionRestored(object sender, ConnectionFailedEventArgs e)
         {
-            Console.WriteLine("ConnectionRestored: " + e.EndPoint);
+            LogHelper.error("ConnectionRestored: " + e.EndPoint);
         }
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace RedisHelper
         /// <param name="e"></param>
         private static void MuxerConnectionFailed(object sender, ConnectionFailedEventArgs e)
         {
-            Console.WriteLine("重新连接：Endpoint failed: " + e.EndPoint + ", " + e.FailureType + (e.Exception == null ? "" : (", " + e.Exception.Message)));
+            LogHelper.error("重新连接：Endpoint failed: " + e.EndPoint + ", " + e.FailureType + (e.Exception == null ? "" : (", " + e.Exception.Message)));
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace RedisHelper
         /// <param name="e"></param>
         private static void MuxerHashSlotMoved(object sender, HashSlotMovedEventArgs e)
         {
-            Console.WriteLine("HashSlotMoved:NewEndPoint" + e.NewEndPoint + ", OldEndPoint" + e.OldEndPoint);
+             LogHelper.error("HashSlotMoved:NewEndPoint" + e.NewEndPoint + ", OldEndPoint" + e.OldEndPoint);
         }
 
         /// <summary>
@@ -137,7 +138,7 @@ namespace RedisHelper
         /// <param name="e"></param>
         private static void MuxerInternalError(object sender, InternalErrorEventArgs e)
         {
-            Console.WriteLine("InternalError:Message" + e.Exception.Message);
+             LogHelper.error("InternalError:Message" + e.Exception.Message);
         }
 
         #endregion 事件
