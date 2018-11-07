@@ -1,0 +1,198 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/layui/layui.js"></script> 
+</head>
+<body>
+    @*收搜条件*@
+    <div class="search">
+        搜索邮箱：
+        <div class="layui-inline">
+            <input class="layui-input" name="邮箱" id="searchEmail" autocomplete="off">
+        </div>
+        搜索性别：<div class="layui-inline">
+            <input class="layui-input" name="性别" id="searchSex" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload">搜索</button>
+    </div>
+
+    @*other*@
+    <div>
+        <ul class="layer_notice" style="background-color:#78BA32;display:none;width:300px;height:150px">
+            <li><a href="http://fly.layui.com/jie/5366/" target="_blank">1. layer 系列常见问题的处理和相关实用干货集锦</a></li>
+            <li><a href="https://github.com/sentsin/layer/blob/master/CHANGELOG.md" target="_blank">2. layer 所有版本完整更新日志</a></li>
+            <li><a href="http://fly.layui.com/jie/2461.html" target="_blank">3. 关注 layui 微信公众号，随时随地获取最新动态</a></li>
+            <li><a href="#" target="_blank" style="color:blue;font-size:200">4. 已经更新数据（上面无关本页面）</a></li>
+        </ul>
+
+    </div>
+
+    @*//表单*@
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    @*//渲染表单上面的按钮*@
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+        </div>
+    </script>
+
+    @*渲染表单内部操作按钮*@
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script> 
+
+
+    @*判断性别*@
+    <script type="text/html" id="sex">
+       {{ GetSex(d.Sex) }}  
+    </script>
+
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            //渲染表格
+            table.render({
+                elem: '#test'
+                , url: "@Url.Action("layuiTable")"
+                , toolbar: '#toolbarDemo'
+                , title: '用户数据表'
+                , cols: [[
+                    { type: 'checkbox', fixed: 'left' }
+                    , { field: 'Id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true, totalRowText: '合计' }
+                    , { field: 'Name', title: '用户名', width: 120, edit: 'text' }//edit: 'text'表示可以直接在页面上修改
+                    , {
+                        field: 'Email', title: '邮箱', width: 150, edit: 'text', templet: function (res) {
+                            return '<em>' + res.Email + '</em>'
+                        }
+                    }
+                    , { field: 'Sex', title: '性别', width: 80, edit: 'text', sort: true, templet: '#sex' }// templet: '#sex'外部编辑修改显示值
+                    , { field: 'Logins', title: '登入次数', width: 100, sort: true, totalRow: true }
+                    , { field: 'JoinTime', title: '加入时间', width: 120 }
+                    , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150 }
+                ]]
+                , page: true,
+                id: 'tableReload',
+                height: 'full',
+                limits: [10, 20, 30],
+                request: {
+                    page: 'curr' //页码的参数名称，默认：page
+                    , limit: 'nums' //每页数据量的参数名，默认：limit
+                }
+                , page: true
+            });
+            //重新加载  重新加载必须放在查询按钮前面  否者无法重新加载
+            var $ = layui.$, active = {
+                //已经完成
+                reload: function () {
+                    var email = $("#searchEmail").val();//邮箱
+                    var sex = $("#searchSex").val();//性别
+ 
+                    //执行重载
+                    table.reload('tableReload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {//条件
+                            emailx: email
+                            , sexx: sex
+                        }
+                    });
+
+                    //弹出剃齿
+                    layer.open({
+                        type: 1,
+                        shade: false,
+                        title: false, //不显示标题
+                        width: 400,
+                        height:150,
+                        content: $('.layer_notice'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                        cancel: function () {
+                            layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });
+                        }
+                    });
+                }
+            };
+
+            //查询按钮  查询按钮必须放在重新加载后面  否者无法重新加载
+            $('.layui-btn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            }); 
+
+            //头工具栏事件
+            table.on('toolbar(test)', function (obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'getCheckData':
+                        var data = checkStatus.data;
+                        layer.alert(JSON.stringify(data));
+                        break;
+                    case 'getCheckLength':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：' + data.length + ' 个');
+                        break;
+                    case 'isAll':
+                        layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                        break;
+                };
+            });
+
+            //监听行工具事件
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                //删除
+                if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+                else if (obj.event === 'edit') {//修改
+                    layer.prompt({
+                        formType: 2
+                        , value: data.Email
+                    }, function (value, index) {//触发修改
+                        obj.update({
+                            Email: value
+                        });
+                        layer.close(index);
+                    });
+                }
+            });
+
+          
+
+          
+        });
+
+
+
+        //判断性别  事件
+        function GetSex(Sex) { 
+            if (Sex != null && $.trim(Sex).length > 0) {
+                if (Sex == "0") { return "<span style='color: red;'>女</span>"}
+                else if (Sex == "1") { return "<span style='color: blue;'>男</span>" }
+                else { return "其他+"; }
+            } else { return "其他-"; }
+        };
+    </script>
+</body>
+</html>

@@ -1,31 +1,80 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RedisHelper;
+using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
-using RedisHelper;
-using Newtonsoft.Json;
-using StackExchange.Redis;
-using System.Threading;
 
-namespace UI.Controllers
+namespace UI.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
-
-        // GET: Home
+        // GET: Admin/Home
         public ActionResult Index()
         {
+            redis();
             Lognet();
-            Ts();
             return View();
         }
 
 
+
+
+        //layui table
+        public string layuiTable(string emailx, string sexx)
+        {
+            //获取layui传入的参数
+            string num = Request["limit"].ToString().Trim();//数量
+            string page = Request["page"].ToString().Trim();//页数
+                                                            //获取条件
+            string searchEmail = ""; string searchSex = "";
+            if (!string.IsNullOrEmpty(emailx))
+            {
+                searchEmail = emailx;
+            }
+            if (!string.IsNullOrEmpty(sexx))
+            {
+                searchSex = sexx;
+            }
+
+            List<Demo> ld = new List<Demo>();
+            int numStatr = int.Parse(page) * 10;
+            int numEnd = (int.Parse(page) - 1) * 10;
+            for (int i = numEnd; i < numStatr; i++)
+            {
+                Demo de = new Demo();
+                de.Id = i;
+                //条件筛选
+                //筛选邮箱
+                if (string.IsNullOrEmpty(searchEmail)) { de.Email = i + "er1@qq.com"; }
+                else
+                {
+                    //判断有没有@
+                    if (searchEmail.Contains("@")) { de.Email = i + searchEmail; }
+                    else { de.Email = i + searchEmail + "@qq.com"; }
+                }
+                //筛选性别
+                if (searchSex == "男") { de.Sex = 1; de.Name = "Tom" + i; de.Logins = i * 3; }
+                else if (searchSex == "女") { de.Sex = 0; de.Name = "Jir" + i; de.Logins = i * 2; }
+                else { if (i % 2 == 0) { de.Sex = 0; de.Name = "Jir" + i; de.Logins = i * 2; } else { de.Sex =1; de.Name = "Tom" + i; de.Logins = i * 3; } }
+
+                de.JoinTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                ld.Add(de);
+            }
+
+
+            return JsonConvert.SerializeObject(new { code = 0, msg = "", count = 30, data = ld });
+        }
+
+
+        //日志
         private void Lognet()
         {
 
-          
+
             SysLogMsg logMessage = new SysLogMsg();
             logMessage.UserName = "小王";
             logMessage.OperationTime = DateTime.Now;
@@ -34,7 +83,8 @@ namespace UI.Controllers
             string Retunr = LogHelper.logMessage(logMessage);
             LogHelper.Info(Retunr);
         }
-        private void Ts()
+        //redis
+        private void redis()
         {
             RedisHelperCs redis = new RedisHelperCs(1);
 
@@ -135,8 +185,6 @@ namespace UI.Controllers
 
             #endregion Lock
         }
-
-
     }
 
 
@@ -144,5 +192,9 @@ namespace UI.Controllers
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
+        public int Sex { get; set; }
+        public int Logins { get; set; }
+        public string JoinTime { get; set; }
     }
 }
