@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +13,10 @@ namespace UI
         protected void Application_Start()
         {
             //配置log4
-            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(Server.MapPath("~/Web.config")));
+            string filelog = HttpContext.Current.Server.MapPath("log4net.config").Replace("UI", "RedisHelper");
+            FileInfo configFile = new FileInfo(filelog);
+            log4net.Config.XmlConfigurator.Configure(configFile);
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

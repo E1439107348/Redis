@@ -34,6 +34,7 @@ namespace RedisHelper
         {
             get
             {
+
                 if (_instance == null)
                 {
                     lock (Locker)

@@ -75,13 +75,24 @@ namespace UI.Areas.Admin.Controllers
         {
 
 
+            //配置文件中格式
+            LogHelper.Info("-配置文件中格式-");
+            LogHelper.error("-配置文件中格式-");
+            LogHelper.fatal("-配置文件中格式-");
+            LogHelper.warn("-配置文件中格式-");
+            LogHelper.debug("-配置文件中格式-");
+            //自己定义格式
             SysLogMsg logMessage = new SysLogMsg();
             logMessage.UserName = "小王";
             logMessage.OperationTime = DateTime.Now;
             logMessage.Content = "测试小酱油";
-            logMessage.Url = "192.168";
+            logMessage.Class = "Home";
             string Retunr = LogHelper.logMessage(logMessage);
             LogHelper.Info(Retunr);
+            LogHelper.error(Retunr);
+            LogHelper.fatal(Retunr);
+            LogHelper.warn(Retunr);
+            LogHelper.debug(Retunr);
         }
         //redis
         private void redis()
