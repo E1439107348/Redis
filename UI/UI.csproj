@@ -219,6 +219,7 @@
     <Content Include="Content\img\login\2.jpg" />
     <Content Include="Content\img\login\3.jpg" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\login\HtmlPage1.html" />
