@@ -12,17 +12,14 @@ namespace UI.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
+        #region 代码测试区域
         // GET: Admin/Home
         public ActionResult Index()
         {
             redis();
             Lognet();
             return View();
-        }
-
-
-
-
+        } 
         //layui table
         public string layuiTable(string emailx, string sexx)
         {
@@ -196,6 +193,22 @@ namespace UI.Areas.Admin.Controllers
 
             #endregion Lock
         }
+        #endregion
+
+        #region  正式代码区域
+
+        #region 视图
+        public ActionResult Login()
+        {
+            return View();
+        }
+        #endregion
+        #region 方法
+
+
+        #endregion 
+
+        #endregion
     }
 
 

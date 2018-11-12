@@ -98,6 +98,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\login\1 %281%29.jpg" />
+    <Content Include="Content\img\login\1 %282%29.jpg" />
+    <Content Include="Content\img\login\1 %283%29.jpg" />
+    <Content Include="Content\img\login\1 %284%29.jpg" />
+    <Content Include="Content\img\login\1 %285%29.jpg" />
+    <Content Include="Content\img\login\1 %287%29.jpg" />
+    <Content Include="Content\img\login\1 %286%29.jpg" />
+    <Content Include="Content\img\login\facebook.png" />
+    <Content Include="Content\img\login\progress.gif" />
+    <Content Include="Content\img\login\twitter.png" />
     <Content Include="Content\layui\css\layui.css" />
     <Content Include="Content\layui\css\layui.mobile.css" />
     <Content Include="Content\layui\css\modules\code.css" />
@@ -202,12 +212,21 @@
     <Content Include="Content\layui\lay\modules\tree.js" />
     <Content Include="Content\layui\lay\modules\upload.js" />
     <Content Include="Content\layui\lay\modules\util.js" />
+    <Content Include="Content\login\reset.css" />
+    <Content Include="Content\login\style.css" />
+    <Content Include="Content\login\supersized.css" />
+    <Content Include="Content\img\login\1.jpg" />
+    <Content Include="Content\img\login\2.jpg" />
+    <Content Include="Content\img\login\3.jpg" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\login\HtmlPage1.html" />
+    <Content Include="Scripts\login\scripts.js" />
+    <Content Include="Scripts\login\supersized-init.js" />
+    <Content Include="Scripts\login\supersized.3.2.7.min.js" />
     <Content Include="Global.asax" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -228,8 +247,7 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-2.2.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,6 +258,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Demo\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

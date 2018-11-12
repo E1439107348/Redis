@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @*css*@
+    @*<link href="~/Content/login/reset.css" rel="stylesheet" />*@
+    @*登录样式*@
+    <link href="~/Content/login/style.css" rel="stylesheet" />
+    @*背景轮播*@
+    <link href="~/Content/login/supersized.css" rel="stylesheet" />
+</head> 
+<body>
+    <div class="page-container">
+        <h1>会员登录</h1>
+        <form action="http://www.sucaijiayuan.com" method="post">
+            <input type="text" name="username" class="username" placeholder="用户名">
+            <input type="password" name="password" class="password" placeholder="密码">
+            <button type="submit">登录</button>
+            <div class="error"><span>+</span></div>
+        </form>
+        <div class="connect">
+            <p>或用以下方式登录</p>
+            <p>
+                <a class="facebook" href="http://www.sucaijiayuan.com"></a>
+                <a class="twitter" href="http://www.sucaijiayuan.com"></a>
+            </p>
+        </div>
+    </div>
+    <!-- Javascript   轮播效果js必须低于3.0以下 -->
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script> 
+    @*页面轮播js*@
+    <script src="~/Scripts/login/supersized.3.2.7.min.js"></script>
+    <script src="~/Scripts/login/supersized-init.js"></script>
+    @*登录控制js*@
+    <script src="~/Scripts/login/scripts.js"></script>
+</body>
+</html>

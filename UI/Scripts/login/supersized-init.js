@@ -1,0 +1,39 @@
+// 轮播背景图片设置
+jQuery(function ($) { 
+    $.supersized({ 
+        // Functionality
+        slide_interval: 4000,    // Length between transitions
+        transition: 1,    // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+        transition_speed: 1000,    // Speed of transition
+        performance: 1,    // 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
+        // Size & Position
+        min_width: 0,    // Min width allowed (in pixels)
+        min_height: 0,    // Min height allowed (in pixels)
+        vertical_center: 1,    // Vertically center background
+        horizontal_center: 1,    // Horizontally center background
+        fit_always: 0,    // Image will never exceed browser width or height (Ignores min. dimensions)
+        fit_portrait: 1,    // Portrait images will not exceed browser height
+        fit_landscape: 0,    // Landscape images will not exceed browser width
+        // Components
+        slide_links: 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+        slides: [    // Slideshow Images
+            { image: '../../Content/img/login/1.jpg' },
+            { image: '../../Content/img/login/2.jpg' },
+            { image: '../../Content/img/login/3.jpg' },
+            { image: '../../Content/img/login/1 (1).jpg' },
+            { image: '../../Content/img/login/1 (2).jpg' },
+            { image: '../../Content/img/login/1 (3).jpg' },
+            { image: '../../Content/img/login/1 (4).jpg' },
+            { image: '../../Content/img/login/1 (6).jpg' },
+            { image: '../../Content/img/login/1 (7).jpg' },
+            { image: '../../Content/img/login/1 (5).jpg' }
+        ]
+
+    });
+
+});
+/*
+本代码由素材家园收集并编辑整理;
+尊重他人劳动成果;
+转载请保留素材家园链接 - www.sucaijiayuan.com
+*/
