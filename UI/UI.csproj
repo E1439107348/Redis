@@ -98,6 +98,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\login\jquery.slider.css" />
+    <Content Include="Demo\jiaoben5309\img\slider.png" />
+    <Content Include="Demo\jiaoben5309\index.html" />
+    <Content Include="Demo\jiaoben5309\js\jquery.min.js" />
+    <Content Include="Scripts\login\jquery.slider.min.js" />
+    <Content Include="Demo\jiaoben5309\说明.htm" />
+    <Content Include="Demo\jiaoben5309\说明.txt" />
+    <Content Include="滑条.html" />
     <Content Include="Content\img\login\1 %281%29.jpg" />
     <Content Include="Content\img\login\1 %282%29.jpg" />
     <Content Include="Content\img\login\1 %283%29.jpg" />
@@ -212,18 +220,15 @@
     <Content Include="Content\layui\lay\modules\tree.js" />
     <Content Include="Content\layui\lay\modules\upload.js" />
     <Content Include="Content\layui\lay\modules\util.js" />
-    <Content Include="Content\login\reset.css" />
     <Content Include="Content\login\style.css" />
     <Content Include="Content\login\supersized.css" />
     <Content Include="Content\img\login\1.jpg" />
     <Content Include="Content\img\login\2.jpg" />
     <Content Include="Content\img\login\3.jpg" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
-    <Content Include="HtmlPage1.html" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <Content Include="Scripts\login\HtmlPage1.html" />
-    <Content Include="Scripts\login\scripts.js" />
     <Content Include="Scripts\login\supersized-init.js" />
     <Content Include="Scripts\login\supersized.3.2.7.min.js" />
     <Content Include="Global.asax" />
@@ -259,7 +264,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Demo\" />
+    <Folder Include="Demo\jiaoben5309\css\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

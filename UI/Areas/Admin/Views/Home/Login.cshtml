@@ -9,27 +9,34 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title> 
-    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
-    @*css*@
-    @*<link href="~/Content/login/reset.css" rel="stylesheet" />*@
+    <title>Login</title>
     @*登录样式*@
     <link href="~/Content/login/style.css" rel="stylesheet" />
     @*背景轮播*@
     <link href="~/Content/login/supersized.css" rel="stylesheet" />
 
+    @*滚动条*@
+    <link href="~/Content/login/jquery.slider.css" rel="stylesheet" />
 
 
-</head> 
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    @*滚动条*@
+    <script src="~/Scripts/login/jquery.slider.min.js"></script>
+    @*页面轮播js*@
+    <script src="~/Scripts/login/supersized.3.2.7.min.js"></script>
+    <script src="~/Scripts/login/supersized-init.js"></script>
+    @*layui*@
+    <script src="~/Content/layui/layui.js"></script>
+</head>
 <body>
     <div class="page-container">
         <h1>会员登录</h1>
-        <form action="http://www.sucaijiayuan.com" method="post">
+        <form>
             <input type="text" name="username" class="username" placeholder="用户名">
             <input type="password" name="password" class="password" placeholder="密码">
-            @*<button type="submit">登录</button>*@
             <button type="button" id="cl"> 登录</button>
             <div class="error"><span>+</span></div>
+            <div id="slider2" style="margin-top:20px"></div>
         </form>
         <div class="connect">
             <p>或用以下方式登录</p>
@@ -39,64 +46,44 @@
             </p>
         </div>
     </div>
-    <!-- Javascript   轮播效果js必须低于3.0以下 -->
-    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
-    @*页面轮播js*@
-    <script src="~/Scripts/login/supersized.3.2.7.min.js"></script>
-    <script src="~/Scripts/login/supersized-init.js"></script>
-    @*登录控制js*@
-    <script src="~/Scripts/login/scripts.js"></script>
 
-
-
-
-
-
-
-    <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
-        <blockquote class="layui-elem-quote layui-quote-nm">
-            Tips：为了更清晰演示，每触发下述一个例子之前，都会关闭所有已经演示的层
-        </blockquote>
-        <button data-method="setTop" class="layui-btn">多窗口模式，层叠置顶</button>
-        <button data-method="confirmTrans" class="layui-btn">配置一个透明的询问框</button>
-        <button data-method="notice" class="layui-btn">示范一个公告层</button>
-        <button data-method="offset" data-type="t" class="layui-btn layui-btn-normal">上弹出</button>
-        <button data-method="offset" data-type="r" class="layui-btn layui-btn-normal">右弹出</button>
-        <button data-method="offset" data-type="b" class="layui-btn layui-btn-normal">下弹出</button>
-        <button data-method="offset" data-type="l" class="layui-btn layui-btn-normal">左弹出</button>
-        <button data-method="offset" data-type="lt" class="layui-btn layui-btn-normal">左上弹出</button>
-        <button data-method="offset" data-type="lb" class="layui-btn layui-btn-normal">左下弹出</button>
-        <button data-method="offset" data-type="rt" class="layui-btn layui-btn-normal">右上弹出</button>
-        <button data-method="offset" data-type="rb" class="layui-btn layui-btn-normal">右下弹出</button>
-        <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
-    </div>
-
-    <!-- 示例-970 -->
-    <ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6111334333458862" data-ad-slot="3820120620"></ins>
-
-
-    <p class="site-demo-text">本页演示是采用了Layui加载的layer，如果你使用的是独立版的layer，无需通过layui.use('layer')来加载。Layui中的layer与独立版的layer的唯一不同，就是加载方式这一点有所差异，请阅读文档：<a href="http://www.layui.com/doc/modules/layer.html#use" target="_blank">http://www.layui.com/doc/modules/layer.html#use</a></p>
-
-    <script src="~/Content/layui/layui.js"></script>
-    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
     <script>
+        var slidercheck = false;
+        //滚动条部分 start
+        $("#slider2").slider({
+            width: 300, // width
+            height: 40, // height
+            sliderBg: "rgb(134, 134, 131)", // 滑块背景颜色
+            color: "#fff", // 文字颜色
+            fontSize: 14, // 文字大小
+            bgColor: "#33CC00", // 背景颜色
+            textMsg: "按住滑块，拖拽验证", // 提示文字
+            successMsg: "验证通过了哦", // 验证成功提示文字
+            successColor: "red", // 滑块验证成功提示文字颜色
+            time: 400, // 返回时间
+            callback: function (result) { // 回调函数，true(成功),false(失败)
+                slidercheck = result;
+                $("#result2").text(result);
+            }
+        });
+        // 还原
+        $("#reset2").click(function () {
+            $("#slider2").slider("restore");
+        });
+        //滚动条部分 end
+
+
         layui.use('layer', function () { //独立版的layer无需执行这一句
             var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
 
             $("#cl").click(function () {
-                layer.open({
-                    type: 1,
-                    skin: 'layui-layer-rim', //加上边框
-                    area: ['420px', '240px'], //宽高
-                    content: 'html内容'
-                });
+                if (slidercheck == true) { layer.msg("验证通过"); }
+                else { layer.msg("验证未通过"); }
+
             });
-            
+
             //触发事件
             var active = {
-
-
-               
                 setTop: function () {
                     var that = this;
                     //多窗口模式，层叠置顶

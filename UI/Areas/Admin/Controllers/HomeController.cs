@@ -19,7 +19,7 @@ namespace UI.Areas.Admin.Controllers
             redis();
             Lognet();
             return View();
-        } 
+        }
         //layui table
         public string layuiTable(string emailx, string sexx)
         {
@@ -56,7 +56,7 @@ namespace UI.Areas.Admin.Controllers
                 //筛选性别
                 if (searchSex == "男") { de.Sex = 1; de.Name = "Tom" + i; de.Logins = i * 3; }
                 else if (searchSex == "女") { de.Sex = 0; de.Name = "Jir" + i; de.Logins = i * 2; }
-                else { if (i % 2 == 0) { de.Sex = 0; de.Name = "Jir" + i; de.Logins = i * 2; } else { de.Sex =1; de.Name = "Tom" + i; de.Logins = i * 3; } }
+                else { if (i % 2 == 0) { de.Sex = 0; de.Name = "Jir" + i; de.Logins = i * 2; } else { de.Sex = 1; de.Name = "Tom" + i; de.Logins = i * 3; } }
 
                 de.JoinTime = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
                 ld.Add(de);
@@ -206,7 +206,7 @@ namespace UI.Areas.Admin.Controllers
         #region 方法
 
 
-        #endregion 
+        #endregion
 
         #endregion
     }
