@@ -43,6 +43,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.0-beta1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.DynamicProxy, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.DynamicProxy.4.5.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -105,7 +123,6 @@
     <Content Include="Scripts\login\jquery.slider.min.js" />
     <Content Include="Demo\jiaoben5309\说明.htm" />
     <Content Include="Demo\jiaoben5309\说明.txt" />
-    <Content Include="滑条.html" />
     <Content Include="Content\img\login\1 %281%29.jpg" />
     <Content Include="Content\img\login\1 %282%29.jpg" />
     <Content Include="Content\img\login\1 %283%29.jpg" />
@@ -238,6 +255,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoFacConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -265,12 +283,33 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Demo\jiaoben5309\css\" />
+    <Folder Include="lib\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RedisHelper\RedisHelper.csproj">
       <Project>{5235e27a-a79e-42aa-bd2d-d20ef7b353d8}</Project>
       <Name>RedisHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheOne.IRepository\TheOne.IRepository.csproj">
+      <Project>{047cc846-e91a-4fc4-81b0-e79e36d7e9de}</Project>
+      <Name>TheOne.IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheOne.IServices\TheOne.IServices.csproj">
+      <Project>{7a3d5174-2656-4a8a-bb6a-7a6c1b0592e4}</Project>
+      <Name>TheOne.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheOne.Model\TheOne.Model.csproj">
+      <Project>{b38eafb2-080b-4f29-a613-a628ea7c1fc6}</Project>
+      <Name>TheOne.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheOne.Repository\TheOne.Repository.csproj">
+      <Project>{46e66f74-dd18-4433-8bbe-70962f72f5d4}</Project>
+      <Name>TheOne.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheOne.Services\TheOne.Services.csproj">
+      <Project>{c350013e-d569-4f13-8e65-11eb30eee765}</Project>
+      <Name>TheOne.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

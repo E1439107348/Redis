@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RedisHelper;
+using RedisHelper.System;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,21 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using TheOne.IServices.System;
+using TheOne.IServices;
+using TheOne.Model.DataModel;
 
 namespace UI.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
-    {
+    public class HomeController : IOCDI
+    { 
+        public HomeController(IUser_Services UserSer, IUserType_Services UserTypeSer)
+        {
+            this.UserSer = UserSer;
+            this.UserTypeSer = UserTypeSer;
+        }
+
+
         #region 代码测试区域
         // GET: Admin/Home
         public ActionResult Index()
@@ -200,11 +211,25 @@ namespace UI.Areas.Admin.Controllers
         #region 视图
         public ActionResult Login()
         {
+            TsDatabase();
             return View();
         }
         #endregion
         #region 方法
+        public void TsDatabase()
+        {
 
+            User us = new User();
+            us.u_Id = Guid.NewGuid().ToString();
+            us.u_Name = "tome";
+            us.u_PassWord = "123";
+            us.u_RegisterTime = DateTime.Now;
+            us.u_Sex = 1;
+            us.u_TypeId = "22";
+            UserSer.Add(us);
+            UserSer.SaveChanges();
+            int a = 1;
+        }
 
         #endregion
 

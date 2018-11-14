@@ -50,8 +50,8 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
@@ -78,12 +78,23 @@
     <Compile Include="RedisConnectionHelp.cs" />
     <Compile Include="RedisHelperCs.cs" />
     <Compile Include="SysLogMsg.cs" />
+    <Compile Include="System\IOCDI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="log4net.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheOne.IServices\TheOne.IServices.csproj">
+      <Project>{7a3d5174-2656-4a8a-bb6a-7a6c1b0592e4}</Project>
+      <Name>TheOne.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheOne.Model\TheOne.Model.csproj">
+      <Project>{b38eafb2-080b-4f29-a613-a628ea7c1fc6}</Project>
+      <Name>TheOne.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
